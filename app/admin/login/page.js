@@ -44,6 +44,8 @@ export default function AdminLoginPage() {
 
         <input
           type="password"
+          name="password"
+          autoComplete="current-password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="كلمة المرور"
