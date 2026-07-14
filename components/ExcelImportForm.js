@@ -35,38 +35,47 @@ export default function ExcelImportForm({ onImported }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white rounded-2xl border border-gray-100 p-5 flex flex-col gap-3">
-      <div className="flex items-center justify-between flex-wrap gap-2">
-        <h2 className="font-extrabold text-lg">استيراد منتجات من ملف إكسل</h2>
-        <a href="/api/admin/template" className="text-brand text-sm font-bold hover:underline">
-          تحميل قالب إكسل جاهز
+    <form onSubmit={handleSubmit} className="admin-panel">
+      <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-5">
+        <div>
+          <h2 className="admin-panel-title">استيراد من إكسل</h2>
+          <p className="admin-panel-sub max-w-2xl">
+            الأعمدة: الاسم، رقم_القطعة، الماركة (يمكن عدة ماركات مفصولة بفاصلة)، الفئة، السعر، الكمية،
+            رابط_الصورة، الوصف. الملف بصيغة .xlsx
+          </p>
+        </div>
+        <a href="/api/admin/template" className="admin-btn-ghost whitespace-nowrap self-start">
+          تحميل القالب
         </a>
       </div>
 
-      <p className="text-sm text-gray-500">
-        الأعمدة: الاسم، رقم_القطعة، الماركة (يمكن عدة ماركات مفصولة بفاصلة مثل: نيسان، إنفينيتي)، الفئة (يمكن عدة
-        فئات)، السعر، الكمية، رابط_الصورة، الوصف. الملف بصيغة .xlsx
-      </p>
+      <label className="admin-dropzone">
+        <input
+          type="file"
+          accept=".xlsx,.xls"
+          onChange={(e) => setFile(e.target.files?.[0] || null)}
+          className="sr-only"
+        />
+        <span className="admin-dropzone-title">{file ? file.name : "اسحب الملف هنا أو اختره"}</span>
+        <span className="admin-dropzone-sub">
+          {file ? "اضغط لتغيير الملف" : "يدعم ملفات Excel (.xlsx / .xls)"}
+        </span>
+      </label>
 
-      <input
-        type="file"
-        accept=".xlsx,.xls"
-        onChange={(e) => setFile(e.target.files?.[0] || null)}
-        className="text-sm"
-      />
-
-      {error && <p className="text-red-600 text-sm">{error}</p>}
+      {error && (
+        <p className="mt-4 text-rose-700 text-sm bg-rose-50 border border-rose-100 rounded-xl px-4 py-2.5">{error}</p>
+      )}
       {result && (
-        <div className="text-sm rounded-xl border border-green-100 bg-green-50 px-4 py-3 space-y-1">
-          <p className="text-green-800 font-bold">تم استيراد {result.imported} منتج بنجاح.</p>
+        <div className="mt-4 text-sm rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 space-y-1">
+          <p className="text-emerald-800 font-bold">تم استيراد {result.imported} منتج بنجاح.</p>
           {result.usedFallbackNameCount > 0 && (
-            <p className="text-amber-700">
+            <p className="text-amber-800">
               {result.usedFallbackNameCount} صف كان ناقص الاسم؛ تم استيراده باسم مؤقت. يمكنك الضغط على «تعديل»
               لإكمال البيانات لاحقاً.
             </p>
           )}
           {result.skippedCount > 0 && (
-            <p className="text-gray-600">
+            <p className="text-slate-600">
               تم تجاوز {result.skippedCount} صف فارغ تماماً
               {result.skippedRows?.length
                 ? ` (أمثلة: ${result.skippedRows.slice(0, 10).join("، ")}${result.skippedCount > 10 ? "..." : ""})`
@@ -77,13 +86,11 @@ export default function ExcelImportForm({ onImported }) {
         </div>
       )}
 
-      <button
-        type="submit"
-        disabled={!file || loading}
-        className="bg-brand text-white font-bold py-2.5 px-6 rounded-xl disabled:opacity-50 w-fit"
-      >
-        {loading ? "جاري الاستيراد..." : "استيراد الملف"}
-      </button>
+      <div className="mt-5 pt-5 border-t border-slate-100">
+        <button type="submit" disabled={!file || loading} className="admin-btn-primary disabled:opacity-50">
+          {loading ? "جاري الاستيراد..." : "استيراد الملف"}
+        </button>
+      </div>
     </form>
   );
 }

@@ -37,9 +37,9 @@ export default function MultiSelectField({
   }
 
   return (
-    <div className="flex flex-col gap-2 text-sm font-semibold text-gray-700 md:col-span-2">
+    <div className="flex flex-col gap-2 text-sm font-semibold text-slate-700 md:col-span-2">
       <span>{label}</span>
-      {hint && <p className="text-xs font-normal text-gray-500">{hint}</p>}
+      {hint && <p className="text-xs font-normal text-slate-500">{hint}</p>}
 
       <div className="flex flex-wrap gap-2">
         {suggestions.map((item) => {
@@ -49,10 +49,10 @@ export default function MultiSelectField({
               key={item}
               type="button"
               onClick={() => toggleSuggestion(item)}
-              className={`px-3 py-1.5 rounded-full text-xs font-bold border transition ${
+              className={`px-3 py-1.5 rounded-lg text-xs font-bold border transition ${
                 active
-                  ? "bg-brand text-white border-brand"
-                  : "bg-white text-gray-700 border-gray-200 hover:border-brand/40"
+                  ? "bg-brand text-white border-brand shadow-sm"
+                  : "bg-white text-slate-700 border-slate-200 hover:border-brand/40 hover:bg-slate-50"
               }`}
             >
               {item}
@@ -65,13 +65,13 @@ export default function MultiSelectField({
         {selected.map((item) => (
           <span
             key={item}
-            className="inline-flex items-center gap-1 bg-gray-100 text-gray-800 rounded-full px-3 py-1 text-xs"
+            className="inline-flex items-center gap-1 bg-brand/10 text-brand rounded-lg px-2.5 py-1 text-xs font-bold"
           >
             {item}
             <button
               type="button"
               onClick={() => removeValue(item)}
-              className="text-gray-400 hover:text-red-600 font-bold"
+              className="text-brand/60 hover:text-rose-600 font-bold leading-none"
               aria-label={`حذف ${item}`}
             >
               ×
@@ -81,7 +81,7 @@ export default function MultiSelectField({
       </div>
 
       <input
-        className="w-full rounded-xl border border-gray-200 px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-brand"
+        className="admin-input"
         value={draft}
         onChange={(e) => setDraft(e.target.value)}
         onKeyDown={(e) => {

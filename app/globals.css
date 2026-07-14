@@ -22,3 +22,199 @@ body {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+@layer components {
+  .admin-shell {
+    background:
+      radial-gradient(1200px 500px at 100% -10%, rgba(155, 35, 66, 0.08), transparent 55%),
+      radial-gradient(900px 420px at 0% 0%, rgba(15, 23, 42, 0.05), transparent 50%),
+      linear-gradient(180deg, #eef1f5 0%, #f6f7f9 40%, #f1f3f6 100%);
+  }
+
+  .admin-header {
+    background: linear-gradient(135deg, #1a0f14 0%, #2a1520 45%, #9b2342 160%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.18);
+  }
+
+  .admin-header-btn {
+    @apply inline-flex items-center justify-center rounded-lg px-3 py-1.5 text-xs sm:text-sm font-bold transition;
+    color: rgba(255, 255, 255, 0.88);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .admin-header-btn:hover {
+    background: rgba(255, 255, 255, 0.14);
+    color: #fff;
+  }
+
+  .admin-header-btn--danger {
+    background: rgba(255, 255, 255, 0.12);
+  }
+
+  .admin-stat {
+    @apply rounded-2xl px-4 py-4 border;
+    background: rgba(255, 255, 255, 0.88);
+    border-color: rgba(148, 163, 184, 0.28);
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+    backdrop-filter: blur(8px);
+  }
+
+  .admin-stat-label {
+    @apply text-xs font-semibold text-slate-500 mb-1;
+  }
+
+  .admin-stat-value {
+    @apply text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight;
+  }
+
+  .admin-stat--amber .admin-stat-value {
+    color: #b45309;
+  }
+
+  .admin-stat--rose .admin-stat-value {
+    color: #be123c;
+  }
+
+  .admin-tabs {
+    @apply flex flex-wrap gap-1 p-1 rounded-xl;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(148, 163, 184, 0.25);
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03);
+  }
+
+  .admin-tab {
+    @apply inline-flex items-center gap-2 rounded-lg px-3.5 py-2 text-sm font-bold text-slate-600 transition;
+  }
+
+  .admin-tab:hover {
+    @apply text-slate-900 bg-white/70;
+  }
+
+  .admin-tab--active {
+    @apply text-white shadow-sm;
+    background: linear-gradient(135deg, #9b2342, #7a1a34);
+  }
+
+  .admin-tab-badge {
+    @apply text-[10px] font-extrabold px-1.5 py-0.5 rounded-md;
+    background: rgba(255, 255, 255, 0.22);
+  }
+
+  .admin-panel {
+    @apply rounded-2xl p-5 sm:p-6 border;
+    background: rgba(255, 255, 255, 0.95);
+    border-color: rgba(148, 163, 184, 0.28);
+    box-shadow:
+      0 1px 2px rgba(15, 23, 42, 0.04),
+      0 12px 32px rgba(15, 23, 42, 0.04);
+  }
+
+  .admin-panel-title {
+    @apply text-lg font-extrabold text-slate-900;
+  }
+
+  .admin-panel-sub {
+    @apply text-sm text-slate-500 mt-1;
+  }
+
+  .admin-input {
+    @apply w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-normal text-slate-900 transition;
+  }
+
+  .admin-input:focus {
+    @apply outline-none border-brand/40 ring-2 ring-brand/20;
+  }
+
+  .admin-btn-primary {
+    @apply inline-flex items-center justify-center rounded-xl px-5 py-2.5 text-sm font-bold text-white transition;
+    background: linear-gradient(135deg, #9b2342, #7a1a34);
+    box-shadow: 0 6px 16px rgba(155, 35, 66, 0.22);
+  }
+
+  .admin-btn-primary:hover:not(:disabled) {
+    filter: brightness(1.05);
+  }
+
+  .admin-btn-ghost {
+    @apply inline-flex items-center justify-center rounded-xl px-4 py-2.5 text-sm font-bold text-slate-700 border border-slate-200 bg-white transition;
+  }
+
+  .admin-btn-ghost:hover {
+    @apply bg-slate-50 border-slate-300;
+  }
+
+  .admin-file {
+    @apply flex items-center justify-center rounded-xl border border-dashed border-slate-300 bg-slate-50 px-4 py-3 text-sm font-bold text-slate-600 cursor-pointer transition;
+  }
+
+  .admin-file:hover {
+    @apply border-brand/40 bg-brand/[0.03] text-brand;
+  }
+
+  .admin-dropzone {
+    @apply flex flex-col items-center justify-center gap-1 rounded-2xl border-2 border-dashed border-slate-300 bg-slate-50/80 px-6 py-10 text-center cursor-pointer transition;
+  }
+
+  .admin-dropzone:hover {
+    @apply border-brand/40 bg-brand/[0.03];
+  }
+
+  .admin-dropzone-title {
+    @apply text-sm font-extrabold text-slate-800;
+  }
+
+  .admin-dropzone-sub {
+    @apply text-xs text-slate-500;
+  }
+
+  .admin-stock {
+    @apply inline-flex items-center rounded-lg px-2 py-1 text-xs font-extrabold;
+  }
+
+  .admin-stock--ok {
+    @apply bg-emerald-50 text-emerald-700;
+  }
+
+  .admin-stock--low {
+    @apply bg-amber-50 text-amber-700;
+  }
+
+  .admin-stock--out {
+    @apply bg-rose-50 text-rose-700;
+  }
+
+  .admin-table-action {
+    @apply rounded-lg px-2.5 py-1 text-xs font-bold text-slate-600 bg-slate-100 hover:bg-slate-200 transition;
+  }
+
+  .admin-table-action--brand {
+    @apply text-brand bg-brand/10 hover:bg-brand/15;
+  }
+
+  .admin-table-action--danger {
+    @apply text-rose-700 bg-rose-50 hover:bg-rose-100;
+  }
+}
+
+@keyframes admin-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-admin-in {
+  animation: admin-in 0.28s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-admin-in {
+    animation: none;
+  }
+}

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { SITE_SHORT_NAME } from "../../../lib/site";
 
 export default function AdminLoginPage() {
   const router = useRouter();
@@ -34,35 +35,53 @@ export default function AdminLoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
-      <form
-        onSubmit={handleSubmit}
-        className="bg-white w-full max-w-sm rounded-2xl shadow-sm border border-gray-100 p-6 flex flex-col gap-4"
-      >
-        <h1 className="text-xl font-extrabold text-center">لوحة تحكم المتجر</h1>
-        <p className="text-sm text-gray-500 text-center">أدخل كلمة مرور الأدمن للمتابعة</p>
+    <div className="admin-shell min-h-screen flex items-center justify-center px-4 py-10">
+      <div className="w-full max-w-md">
+        <div className="text-center mb-7">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/logo.png"
+            alt={SITE_SHORT_NAME}
+            className="mx-auto h-14 w-14 rounded-2xl object-contain bg-white shadow-sm ring-1 ring-slate-200/80 p-1.5 mb-4"
+          />
+          <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight">لوحة إدارة {SITE_SHORT_NAME}</h1>
+          <p className="text-sm text-slate-500 mt-1.5">أدخل كلمة مرور الأدمن للمتابعة</p>
+        </div>
 
-        <input
-          type="password"
-          name="password"
-          autoComplete="current-password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="كلمة المرور"
-          autoFocus
-          className="rounded-xl border border-gray-200 px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-brand"
-        />
+        <form onSubmit={handleSubmit} className="admin-panel !p-6 sm:!p-7">
+          <label className="flex flex-col gap-1.5 text-sm font-semibold text-slate-700">
+            كلمة المرور
+            <input
+              type="password"
+              name="password"
+              autoComplete="current-password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="••••••••••••"
+              autoFocus
+              className="admin-input"
+            />
+          </label>
 
-        {error && <p className="text-red-600 text-sm text-center">{error}</p>}
+          {error && (
+            <p className="mt-4 text-rose-700 text-sm text-center bg-rose-50 border border-rose-100 rounded-xl px-4 py-2.5">
+              {error}
+            </p>
+          )}
 
-        <button
-          type="submit"
-          disabled={loading || !password}
-          className="bg-brand text-white font-bold py-2.5 rounded-xl disabled:opacity-50"
-        >
-          {loading ? "جاري الدخول..." : "دخول"}
-        </button>
-      </form>
+          <button
+            type="submit"
+            disabled={loading || !password}
+            className="admin-btn-primary w-full mt-5 disabled:opacity-50"
+          >
+            {loading ? "جاري الدخول..." : "دخول لوحة التحكم"}
+          </button>
+
+          <a href="/" className="block text-center text-sm text-slate-500 hover:text-brand font-semibold mt-4 transition-colors">
+            العودة للمتجر
+          </a>
+        </form>
+      </div>
     </div>
   );
 }

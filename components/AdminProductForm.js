@@ -103,16 +103,18 @@ export default function AdminProductForm({ editingProduct, onSaved, onCancelEdit
   }
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white rounded-2xl border border-gray-100 p-5 flex flex-col gap-3">
-      <h2 className="font-extrabold text-lg">{editingProduct ? "تعديل منتج" : "إضافة منتج جديد"}</h2>
-      <p className="text-xs text-gray-500">
-        يمكن اختيار أكثر من ماركة لنفس القطعة (مثل نيسان + إنفينيتي) وأكثر من فئة.
-      </p>
+    <form onSubmit={handleSubmit} className="admin-panel">
+      <div className="mb-5">
+        <h2 className="admin-panel-title">{editingProduct ? "تعديل منتج" : "إضافة منتج جديد"}</h2>
+        <p className="admin-panel-sub">
+          يمكن اختيار أكثر من ماركة لنفس القطعة (مثل نيسان + إنفينيتي) وأكثر من فئة.
+        </p>
+      </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <Field label="اسم القطعة *">
           <input
-            className="w-full rounded-xl border border-gray-200 px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-brand"
+            className="admin-input"
             value={form.name}
             onChange={(e) => update("name", e.target.value)}
             placeholder="مثال: طرمبة بنزين نيسان صني"
@@ -121,7 +123,7 @@ export default function AdminProductForm({ editingProduct, onSaved, onCancelEdit
 
         <Field label="رقم القطعة">
           <input
-            className="w-full rounded-xl border border-gray-200 px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-brand"
+            className="admin-input"
             value={form.partNumber}
             onChange={(e) => update("partNumber", e.target.value)}
             placeholder="مثال: 17040-1HC0A"
@@ -152,7 +154,7 @@ export default function AdminProductForm({ editingProduct, onSaved, onCancelEdit
             type="number"
             min="0"
             step="0.01"
-            className="w-full rounded-xl border border-gray-200 px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-brand"
+            className="admin-input"
             value={form.price}
             onChange={(e) => update("price", e.target.value)}
           />
@@ -163,50 +165,45 @@ export default function AdminProductForm({ editingProduct, onSaved, onCancelEdit
             type="number"
             min="0"
             step="1"
-            className="w-full rounded-xl border border-gray-200 px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-brand"
+            className="admin-input"
             value={form.quantity}
             onChange={(e) => update("quantity", e.target.value)}
           />
         </Field>
 
         <Field label="صورة المنتج">
-          <input type="file" accept="image/*" onChange={handleImageChange} className="text-sm" />
-          {imageError && <p className="text-red-600 text-xs mt-1">{imageError}</p>}
+          <label className="admin-file">
+            <input type="file" accept="image/*" onChange={handleImageChange} className="sr-only" />
+            <span>{form.image ? "تغيير الصورة" : "اختر صورة للمنتج"}</span>
+          </label>
+          {imageError && <p className="text-rose-600 text-xs mt-1.5">{imageError}</p>}
         </Field>
       </div>
 
-      <Field label="وصف (اختياري)">
+      <Field label="وصف (اختياري)" className="mt-4">
         <textarea
-          className="w-full rounded-xl border border-gray-200 px-4 py-2.5 min-h-[70px] focus:outline-none focus:ring-2 focus:ring-brand"
+          className="admin-input min-h-[88px] resize-y"
           value={form.description}
           onChange={(e) => update("description", e.target.value)}
         />
       </Field>
 
       {form.image && (
-        <div className="w-24 h-24 rounded-xl overflow-hidden border border-gray-100">
+        <div className="mt-4 w-28 h-28 rounded-xl overflow-hidden border border-slate-200 bg-slate-50">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={form.image} alt="معاينة" className="w-full h-full object-cover" />
         </div>
       )}
 
-      {error && <p className="text-red-600 text-sm">{error}</p>}
+      {error && <p className="mt-4 text-rose-700 text-sm bg-rose-50 border border-rose-100 rounded-xl px-4 py-2.5">{error}</p>}
 
-      <div className="flex gap-2">
-        <button
-          type="submit"
-          disabled={saving}
-          className="bg-brand text-white font-bold py-2.5 px-6 rounded-xl disabled:opacity-50"
-        >
+      <div className="flex flex-wrap gap-2 mt-5 pt-5 border-t border-slate-100">
+        <button type="submit" disabled={saving} className="admin-btn-primary disabled:opacity-50">
           {saving ? "جاري الحفظ..." : editingProduct ? "حفظ التعديلات" : "إضافة المنتج"}
         </button>
         {editingProduct && (
-          <button
-            type="button"
-            onClick={onCancelEdit}
-            className="border border-gray-200 font-bold py-2.5 px-6 rounded-xl"
-          >
-            إلغاء
+          <button type="button" onClick={onCancelEdit} className="admin-btn-ghost">
+            إلغاء التعديل
           </button>
         )}
       </div>
@@ -214,9 +211,9 @@ export default function AdminProductForm({ editingProduct, onSaved, onCancelEdit
   );
 }
 
-function Field({ label, children }) {
+function Field({ label, children, className = "" }) {
   return (
-    <label className="flex flex-col gap-1 text-sm font-semibold text-gray-700">
+    <label className={`flex flex-col gap-1.5 text-sm font-semibold text-slate-700 ${className}`}>
       {label}
       {children}
     </label>
