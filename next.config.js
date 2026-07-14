@@ -6,7 +6,6 @@ const nextConfig = {
   images: { unoptimized: true },
   outputFileTracingRoot: path.join(__dirname),
   experimental: {
-    // Large Excel catalogs for admin import.
     middlewareClientMaxBodySize: "100mb"
   }
 };

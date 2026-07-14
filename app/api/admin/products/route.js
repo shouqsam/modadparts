@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { addProduct, getProducts } from "../../../../lib/db";
 
-const MAX_IMAGE_LENGTH = 4_000_000; // ~3MB binary as base64
+const MAX_IMAGE_LENGTH = 4_000_000; 
 
 function validate(body) {
   if (!body || typeof body !== "object") return "بيانات غير صالحة";

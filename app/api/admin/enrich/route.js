@@ -3,10 +3,7 @@ import { enrichPartWithGemini, getGeminiApiKey } from "../../../../lib/gemini";
 import { findPartImageUrl } from "../../../../lib/findPartImage";
 import { lookupPartContext } from "../../../../lib/partLookup";
 
-/**
- * Preview enrichment for the admin form (does not save).
- * Body: { partNumber, name?, brand?, category?, description?, image? }
- */
+
 export async function POST(request) {
   if (!getGeminiApiKey()) {
     return NextResponse.json(
