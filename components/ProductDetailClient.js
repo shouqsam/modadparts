@@ -131,7 +131,7 @@ export default function ProductDetailClient({ product: initialProduct }) {
     <div className="min-h-screen bg-[#f4f5f7]">
       <header className="bg-white border-b border-gray-100 sticky top-0 z-40 shadow-sm">
         <div className="max-w-6xl mx-auto px-3 sm:px-4 py-2.5 sm:py-3.5 flex flex-row items-center gap-2.5 sm:gap-4 md:gap-6">
-          <Link href="/" className="shrink-0" aria-label="سلماكس قطع غيار التجارة">
+          <Link href="/" className="shrink-0" aria-label="مدد قطع غيار التجارة">
             <StoreLogo className="h-10 sm:h-12 w-auto max-w-[72px] sm:max-w-[100px] object-contain" />
           </Link>
 

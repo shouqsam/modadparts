@@ -92,7 +92,7 @@ export default function StoreClient({ products }) {
     <div className="min-h-screen bg-[#f4f5f7]">
       <header className="bg-white border-b border-gray-100 sticky top-0 z-40 shadow-sm">
         <div className="max-w-6xl mx-auto px-3 sm:px-4 py-2.5 sm:py-3.5 flex flex-row items-center gap-2.5 sm:gap-4 md:gap-6">
-          <a href="/" className="shrink-0" aria-label="سلماكس قطع غيار التجارة">
+          <a href="/" className="shrink-0" aria-label="مدد قطع غيار التجارة">
             <StoreLogo className="h-10 sm:h-12 md:h-14 w-auto max-w-[72px] sm:max-w-[100px] md:max-w-[140px] object-contain" />
           </a>
 
@@ -127,7 +127,18 @@ export default function StoreClient({ products }) {
       </header>
 
       <main className="max-w-6xl mx-auto px-4 py-8 flex flex-col gap-10 md:gap-14">
-        <section id="products" className="flex flex-col gap-5 scroll-mt-6">
+        <section className="text-center max-w-3xl mx-auto">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-gray-900 leading-snug">
+            قطع غيار سيارات أصلية في الرياض
+          </h1>
+          <p className="mt-3 text-sm sm:text-base text-gray-500 leading-relaxed">
+            متجر مدد قطع غيار التجارة يوفر قطع غيار سيارات لنيسان وإنفينيتي ورينو، مع بحث سريع برقم
+            القطعة وتوصيل لجميع مناطق المملكة.
+          </p>
+        </section>
+
+        <section id="products" className="flex flex-col gap-5 scroll-mt-6" aria-label="منتجات قطع غيار السيارات">
+          <h2 className="text-xl sm:text-2xl font-extrabold text-gray-900">قطع غيار السيارات المتوفرة</h2>
           <BrandFilter brands={brands} active={brand} onChange={setBrand} />
 
           {searchTerms.length > 1 && (

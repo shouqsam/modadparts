@@ -40,11 +40,11 @@ export default function HomeSections() {
 
   return (
     <div className="flex flex-col gap-10 md:gap-14">
-      {/* لماذا سلماكس؟ */}
+      {/* لماذا مدد؟ */}
       <section className="text-center">
-        <h2 className="text-2xl md:text-3xl font-extrabold text-gray-900">لماذا مدد قطع غيار التجارة؟</h2>
+        <h2 className="text-2xl md:text-3xl font-extrabold text-gray-900">لماذا تختار مدد لقطع غيار السيارات؟</h2>
         <p className="mt-2 text-gray-500 text-sm md:text-base">
-          نقدم تجربة شراء موثوقة لقطع غيار السيارات بكل سهولة
+          نوفر قطع غيار سيارات أصلية في الرياض مع تجربة شراء موثوقة وسريعة
         </p>
 
         <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
